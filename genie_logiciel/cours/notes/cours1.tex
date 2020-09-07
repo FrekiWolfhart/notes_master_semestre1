@@ -1,0 +1,59 @@
+\section{Cours 1}
+Un mauvais développement peux créer des erreures graves,\\
+mais même le plus parfait des développements ne peux être exempt d'erreurs.
+
+Les principales sources d'erreurs sont:
+\begin{itemize}
+	\item Les erreurs humaines,
+	\item Les problèmes trop complexes,
+	\item Les demandes du client, tel que le rajout de fonctionnalités en plein milieu du projet.
+\end{itemize}
+
+\subsection{Qualités logicielles}
+\subsubsection{Les qualités externes}
+Les qualités externes du logiciel sont des qualités remarquables par tout le monde, même les non programmeurs.
+Par exemple:
+\begin{itemize}
+	\item validité, n'importe qui peux remarquer, et même des fois assez vite, si le code n'est pas valide,
+	car il ne répondra donc pas aux besoins.
+	\item robustesse, si le code n'est pas robuste, et qu'il casse, les utilisateurs s'en rendront compte
+	facilement.
+	\item performance, un programme qui lag n'est pas vraiment génial à utiliser.
+	\item ergonomie, si l'interface n'est aps ergonomique, cela va ruiner l'expérience de l'utilisateur.
+\end{itemize}
+\subsubsection{Les qualités internes}
+Les qualités internes sont des qualités de code remarquées principalement par des développeurs.
+Par exemple:
+\begin{itemize}
+	\item modulabilité, si le code n'est pas miodulable, rajouter de nouvelles fonctionnalités sera une horreur.
+	\item lisibilité, le debuggage sera presque impossible si le code est illisible.
+	\item maintenabilité, si on ne peux aps facilement débugger le code, il va souvent crasher, et les
+	utilisateurs ne seront pas content.
+\end{itemize}
+
+Tout ces facteurs n'étant pas forcément compatibles entre eux, il faudra compromiser, voir en prioriser certains.
+
+Quand on design un projet, on doit satisfaire les critères CQFD, mais les facteurs coût et délai de développement
+peuvent être limitants.
+
+\subsection{Le cycle de vie}
+
+La gestion du projet est une part importante du développement logiciel, car elle permet de bien
+séparer les tâches, et d'organiser le projet.
+
+\subsubsection{Exemples de modèles de gestion}
+Le modèle en V a été conçu pour corriger la lacune principale du modèle en cascade, qui est le test en
+fin de projet.
+
+Dans le modèle en V, chaque composante a ses tests et sa réalisation fait en parallèle, ce qui permet
+d'identifier plus facilement les sources d'erreurs.
+
+Le modèle en spirale est surtout utilisé pour les projets dits innovants, c'est à dire les projets où le client
+ne sait pas précisément ce qu'il veut. Il consiste à présenter de multiples prototypes au client, et à ne
+continuer que avec ceux approuvés, ce jusqu'à réalisation du produit final.
+
+\subsection{Méthodes et modèles}
+
+Un bon modèle se doit d'être abstrait, raffiné et lisible.\\
+Les modèles les plus utilisés en informatique sont les modèles conceptuels, qui se basent sur l'utilisation
+de symboles pour représenter des aspects qualitatifs.

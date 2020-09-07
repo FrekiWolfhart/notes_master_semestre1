@@ -1,0 +1,70 @@
+\section{Cours 2}
+\subsection{Méthodes et modèles(suite)}
+
+On doit d'abord modéliser l'environnement du projet, c'est à dire les objets et leurs états.
+
+En utilisant des langages comme l'UML, on peux créer une machine à états qui va décrire le comportement
+des objets en fonction des commandes qui leur sont envoyées.
+
+On peux imaginer une machine à états comme un automate, dont les commandes sont les transition,
+et dont l'état par défault est l'état initial.\\
+\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}
+		\node[state, initial] at(0,0) (0){fermée};
+		\node[state]          at(6,0) (1){ouverte};
+		\draw[->] (0) edge[loop above] node{fermer} (0)
+				  (1) edge[loop above] node{ouvrir} (1)
+				  (0) edge[above]      node{ouvrir} (1)
+				  (1) edge[below]      node{fermer} (0);
+	\end{tikzpicture}
+	\caption{Exemple de modélisation d'une trappe.}
+\end{figure}
+
+Si il y a plus d'une donnée, l'état devra être décrit par l'ensemble des données, ce qui est plus complexe
+que dans l'exemple de la figure 1.
+
+Il faut aussi, à travers le modèle, prévoir les cas où il ne se passe rien. Per exemple, si un chariot se trouve à
+sa position la plus à gauche, et qu'on lui demande d'aller à gauche, il doit rester immobile.
+\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}
+		\node[state, initial] at(0,0)  (0){$P \leq P_2$};
+		\node[state]          at(4,2)  (1)[text width=3cm]{déplacement à droite};
+		\node[state]          at(4,-4) (2)[text width=3cm]{déplacement à gauche};
+		\node[state]          at(8,0)  (3){arrêt $P>P_2$};
+		\draw[->] (0) edge[above] node{+v}                              (1)
+				  (1) edge[above] node{$\emptyset$}                     (3)
+				  (3) edge[bend right, above] node{-v}                  (2)
+				  (2) edge[below] node{$\emptyset (P \leq P_2)$}        (0)
+				  (2) edge[bend right, above] node{$\emptyset (P>P_2)$} (3);
+	\end{tikzpicture}
+	\caption{Modèle du déplacement du chariot.}
+\end{figure}
+
+\subsubsection{Système de contrôle}
+Le système de contrôle est me système qui lie tout les objets dans un environnement.
+
+L'opérateur (humain) ordonne le démarrage, ou l'arrêt d'urgence, du système, et le système ordonne aux objets d'agir
+en conséquence.
+
+Le système peux connaitre, i.e. stocker, des informations sur les objets qui reçoivent ses ordres.
+
+\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}
+		\node[state, initial] at(0,0)  (0){à l'arrêt $P_2$};
+		\node[state]          at(6,0)  (1)[text width=2cm]{chariot se déplace};
+		\node[state]          at(12,0) (2)[text width=2cm]{chariot à l'arrêt};
+		\node[state]          at(6,-4) (3)[text width=2cm]{déplacement à gauche};
+		\node[state]          at(0,-4) (4){vidage chariot};
+		\draw[->] (0) edge[above] node[scale=0.5]{cycle/+v}                                         (1)
+				  (1) edge[above] node[scale=0.5]{capteur droit/ $\emptyset$ mettre\_en\_marche}      (2)
+				  (2) edge[right] node[scale=0.5]{temps$\geq$temps\_remplissage/mettre\_à\_l'arrêt -v}  (3)
+				  (3) edge[below] node[scale=0.5]{capteur gauche/ $\emptyset$ ouvrir}               (4)
+				  (4) edge[left]  node[scale=0.5]{temps$\geq$temps\_vidage/fermer}     (0);
+	\end{tikzpicture}
+	\caption{Modèle d'un système de contrôle.}
+\end{figure}
+
+
