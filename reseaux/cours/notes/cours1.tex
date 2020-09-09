@@ -1,0 +1,119 @@
+\section{Cours 1}
+\subsection{Notions de base}
+
+Un réseau n'est rien de plus qu'un graphe, c'est à dire un ensemble d'objets, ou de noeuds, connectés entre eux.
+
+\subsubsection{Mode en diffusion}
+Le mode en diffusion représente les réseaux qui transmettent les messages en les diffusant à tout les membres
+du réseau. Le destinataire se doit donc d'écouter le réseau, afin de ne pas louper un message.\\
+Des exemples de mode en diffusion sont:
+\begin{itemize}
+	\item le bus
+	\item l'anneau
+	\item le satellite
+\end{itemize}
+Sur un bus, les machines s'identifient par leurs adresses, et ne prennent le message que si l'identifiant du
+destinataire du message est l'identifiant de la machine.\\
+Sur un système en anneau, le message tourne dans l'anneau jusqu'à ce qu'il a atteint la machine destinataire.\\
+Dans ce mode de communication, il n'y a qu'un seul message qui circule dans le réseau à la fois.
+
+\subsubsection{Mode point à point}
+Le mode point à point est le système de réseau qui ressemble le plus à un graphe, les objets sont connectés
+entre eux, et font passer le message jusqu'au destinataire.\\
+Des exemples de mode en point à point sont:
+\begin{itemize}
+	\item l'étoile
+	\item la boucle simple
+	\item la boucle double
+	\item le maillage irrégulier
+	\item le maillage régulier
+\end{itemize}
+
+Dans l'architecture en étoile, tout les membres du réseau sont reliés à un seul élément, qui sert de hub central de 
+passage pour les messages. Le défaut principal de ce système est que, si le hub central tombe en panne,
+plus aucune communication n'est possible.\\
+Dans une boucle simple, tout les membres du réseau sont reliés à deux autres membres via un canal simple, et
+font tourner le message dans le réseau jusqu'à son destinataire. Cette architecture à un point faible, c'est que si
+si plusieurs connections tombent en panne, il se peux que la communication dans le serveur soit impossible.
+Heureusement, le système en double boucle corrige ce défaut, en rajoutant des cannaux de connection secondaire,
+afin que les messages puissent toujours être transmit même si les cannaux principaux tombent en panne.\\
+Le maillage irrégulier est un graphe assez classique, les éléments sont liés entre eux via des connections, mais
+chaque élément n'est pas lié à tout les autres. Ce dernier cas n'arrive que dans le maillage régulier,
+qui obtient donc le titre de graphe complet.
+
+\subsubsection{Communication avec connection}
+Dans le système de communication avec connection, il faut que les deux machines soient d'accord pour que la
+transmission soit faites, comme dans un appel téléphonique, par exemple.\\
+Chacune des communications faites ainsi possède donc un circuit par lequel vont passer toutes les données, et ce
+circuit disparaît à la fermeture de la communication. Donc, deux communication entre deux même machines ont peu de
+chances d'avoir exactement le même circuit, même si la seconde communication est lancé très peu de temps après
+que la première soit terminée.
+
+\subsubsection{Communication sans connection}
+Dans la communication sans connexion, la machine émetrisse envoie le message sans s'assurer que la machine
+destinatrice, ou que les machines intermédiaires, ne soient actifs et capable de reçevoir et transmettre le message.
+Un bon exemple de communication sans connection est le service postale.\\
+Étant donné qu'il n'y a pas de connection établie par les machine, il ne peux pas y avoir de circuit tracé en
+avance, et les paquets n'arriveront donc probablement pas dans l'ordre dans lequel ils ont été envoyés.\\
+Cependant, l'ordre d'arrivé des paquets n'est pas aléatoire, il sera, le plus souvent, déterminé par des
+algorithmes de parcours de graphe, tel que Dijkstra.
+
+\subsubsection{Commutation de circuit}
+Si un circuit n'est pas beaucoup utilisé, il peux être réalloué, au moins partiellement, afin que le réseau n'ai pas
+une zone qui est inutilisable par le reste du réseau, mais dans laquelle aucun paquet ne voyage.\\
+Les noeuds d'un réseau ont une capacité de mémoire, afin de pouvoir stocker provisoirement le message, et de pouvoir
+le renvoyer si il n'a pas été transmis sans echec.
+
+\subsubsection{Commutation de paquets}
+Plutôt que d'envoyer les messages d'un coup, ils sont découpés en paquets plus petits, puis envoyés.\\
+Le destinataire aura donc comme travail de reconstituer le message, car les paquets n'arriveront pas forcément dans 
+l'ordre envoyé.\\
+Afin de l'assister dans cette tache, le dernier paquet contiendra un bit indiquant qu'il correspond à la fin du
+message.\\
+
+\subsubsection{Commutation de cellules}
+Une cellule est un paquet de précisément 53 octets. Il est avantageux de transmettre de si petits paquets,
+car leur taille leur permet d'être transmis avec des risques de perte moindre, et sont plus rapide à envoyer.
+
+\subsubsection{Normes}
+Les normes sont mis en place par des organismes de normalisation, afin que tout les réseaux puissent facilement
+communiquer entre eux. Des exemples d'organisation de normalisation sont:
+\begin{itemize}
+	\item L'ISO  (International Standard Organisation)
+	\item L'ITU  (International Telecomumnication Union)
+	\item L'IEEE (Institute of Electrical and Electronic Engineers)
+\end{itemize}
+
+\subsection{Modèle OSI}
+Le modèle OSI(Open Systems Interconnection) est un système en couches, ce qui permet une séparation des parties du
+réseau.\\
+Cette séparation permet, entre autres, de changer une partie du réseau, ou couche, sans devoir toucher les autres.
+
+\subsubsection{Encapsulation des données}
+Dans le modèle OSI, un message qui part de la couche n de la machine A, pour aller vers la couche n de la machine B
+doit passer par toutes les couches intermédiares des deux machines.\\
+Chaque couche intermédiare de la machine A va donc rajouter un en-tête au message, afin que la couche intermédiare
+correspondante de la machine B sache quoi faire du message.\\
+L'acte de rajouter cette en-tête s'appelle l'encapsulation des données.
+
+\subsubsection{Couche physique}
+La couche physique permet la conncetion physique entre les machines communicantes, c'est à dire l'envoie du message,
+en bits, entre les machines. Il est impératif que son message ne soit pas altérer, pour éviter les erreurs de
+communications.\\
+Au niveau de cette couche, la communication peux se faire de multiples façons:
+\begin{itemize}
+	\item une communication en simplex
+	\item une communication en half-duplex
+	\item une communication en full-duplex
+\end{itemize}
+
+La communication en simplex est une communication unilatérale, ou la couche transmet son message, et ne recevra
+jamais de réponse.\\
+Dans la communication en half-duplex, les deux couches discutent, mais une couche ne peux envoyer un
+message que si aucun autre message n'est entrain d'être envoyé. Elles communiquent donc en alternance.\\
+Avec la communication en full-duplex, les deux couches discutent, et s'envoient des messages quand elles veulent.
+Cela correspond à une discussion entre deux personnes ou aucun des deux participants n'attend que l'autre ai fini
+avant de parler.
+
+Le débit est exprimé en Baud, et un Baud correspond à un top d'horloge par seconde.\\
+Le débits en bits/s est équivalent au débit en Baud/s.
