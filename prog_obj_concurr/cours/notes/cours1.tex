@@ -1,0 +1,52 @@
+\section{Cours 1}
+\subsection{Un thread}
+Un thread est un objet qui execute du code. Afin d'écrire cela proprement, il faudra écrire des classes qui
+correspondront aux threads.
+
+Le moyen le plus simple de faire ça est de créer une classe qui hérite de la classe Thread, ce qui oblige à créer
+une méthode run, qui sera exécutée par le thread.
+\textbf{IMPORTANT!} il faut utiliser start et non run pour lancer le thread.
+
+Une autre approche, qui est peu recommandée, est de créer une classe qui hérite de Runnable, plutôt que d'hériter de
+Thread.
+
+Une classe de Thread ou de Runnable peux contenir le main, et on peux lancer un thread en le créant.\\
+Il existe une méthode nomée getName(), qui permet de récupérer le nom d'un thread. La méthode setName() permet
+de changer son nom. Pour accéder à un thread, on a besoin de sa référence, et non de son nom.
+
+Les priorités d'un thread n'on que peux d'utilité. Il servent à prioriser les threads, si jamais le système à besoin
+ne peux pas gérer touts les threads.
+
+Un thread peux rencontrer des instructions qui le feront sortir du runnable, par exemple un verrou.\\
+Si un thread est dans un verrou, il doit attendre l'authorisation pour continuer.\\
+Il entrera dans un état TimeWainting si il doit attendre un certain temps, ou bien dormir (méthode sleep(int ms)).\\
+
+La méthode join() permet de mettre en pause un thread tant qu'un autre n'a pas fini.\\
+Les méthodes sleep() et join() peuvent soulever une execption.\\
+La méthode yield() pousse un thread à laisser d'autres s'éxecuter. Son usage est déconseillé, car cela diminue
+la propreté du code.
+
+Afin qu'un thread puisse s'éxecuter, il faut qu'il ai accès à un coeur. Il n'y a à priori aucun intérêt d'avoir plus
+de threads que de coeur, sauf si cela peux simplifier le code.
+
+\subsection{Éléments de synchronisation}
+\subsubsection{Synchronisation par verrou}
+Si plusieurs threads doivent toucher les mêmes données, on peux verrouiller les données à chaque fois qu'un thread
+les change. Cela permet de faire en sorte que seul un thread change les données à la fois.
+
+Le mot clé "synchronized" permet de ne faire éxcuter du code que si on a accès au verrou. Si un thread a besoin d'un
+verrou, mais ne peux pas y accèder, il passe en état blocked. Il repassera en état runnable que lorsqu'il aura accès
+au verrou.
+
+Prendre un verrou est appelé "verouiller", et libérer un verrou est appelé "dévérouiller".\\
+En java, il est impossible de tenter de prendre un verrou si on utilise "synchronized". C'est à dire, que
+"synchronized" ne permet pas d'éxecuter du code si le verrou n'est pas libre lorsqu'on le demande.\\
+Lorsqu'une méthode est déclarée "synchronized", elle ne peux pas être éxecutée si le thread qui veut l'éxecuter
+n'a pas le verrou. Si une méthode est synchronisée et statique, on demande le verrou de la classe plutôt que celui
+de l'objet.
+
+\subsubsection{Synchronisation par signaux}
+
+Le principe de la programmation par signaux est de régler les problèmes de type producteur-consommateur.
+Par exemple, le cas dans lequel un thread a besoin d'une donnée produite par un autre, il doit alors attendre que
+le thread "producteur" produise la donnée.
