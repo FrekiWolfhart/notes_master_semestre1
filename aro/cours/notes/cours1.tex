@@ -1,0 +1,192 @@
+\section{Cours 1}
+\subsection{La programmation linéaire}
+Exemple de problème linéaire:
+maximiser $x_1 + x_2$ avec:
+\begin{itemize}
+    \item $x_2 - x_1 \leq 1$
+    \item $x_1 + 6 x_2 \leq 15$
+    \item $4x_1 - x_2 \leq 10$
+    \item $x_1 \geq 0$, et$x_2 \geq 0$
+\end{itemize}
+
+Si on dessine ce problème sur un plan, on observe une
+zone du plan correspondant à ces contraintes, et la
+solution optimale avec ces contraintes est 5, avec
+$x_1 = 3$ et $x_2 = 2$.
+
+\subsection{La méthode simplex}
+Il s'agit d'aller de solution de base en solution
+de base.\\
+Une solution de base est l'ensemble des sommets du
+polyhèdre, et le polyhèdre est l'ensemble des solutions
+admissibles.\\
+La méthode simplex est donc une méthode de voyage entre 
+les sommets du polyhèdre solution.
+
+Forme générale du problème linéaire:
+maximiser $c_1x_1 + c_2x_2 + ... + c_nx_n$ avec:
+\begin{itemize}
+    \item $a_{11}x_1 + a_{12}x_2 + ... + a_{1n}x_n \leq b_1$
+    \item $a_{m1}x_1 + a_{m2}x_2 + ... + a_{mn}x_n \leq b_n$
+    \item $x_1, ..., x_n \geq 0$
+\end{itemize}
+
+Chaque problème de maximisation a un problème de
+minimisation associé.
+
+La programmation linéaire date de Fourrier, alors que
+la méthode suplex a été inventée dans les années 50 par 
+Dantzig.
+
+L'algorithme de la méthode simplex est exponentiel dans
+le pire des cas, et polynomial en moyenne.
+
+L'algorithme de Khachian, créé dans les années 70 est un
+algorithme polynomial un peu moins efficace que la
+méthode suplex.
+
+Prenons l'exemple de la diète. Notre corps à besoin de:
+\begin{itemize}
+    \item Vitamine A : 0,5mg
+    \item Vitamine C : 15mg
+    \item Fibres : 4g
+\end{itemize}
+
+Chaque nourriture à un prix, et notre corps à des
+demandes nutritionnelles.
+
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Nom nutriment & Carottes($x_1$) & Choux($x_2$) & Cornichons($x_3$) & Demandes \\
+\hline
+Vitamine A & 35mg & 0,5mg & 0,5mg & 0,5mg\\
+\hline
+Vitamine C & 60mg & 30mg & 10mg & 15mg\\
+\hline
+Fibres & 30g & 20g & 10g & 4g\\
+\hline
+prix & 0,75 euro & 0,5 euro & 0,15 euro & \\
+\hline
+\end{tabular}
+
+Cette exemple demandera donc de \textbf{MINIMISER} la
+quantité d'aliments à prendre, afin de minimiser le
+coût, et d'avoir les apports minimaux requis.
+
+Exemple de la méthode suplex:
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+Objet & Cendrier($x_1$) & Bol($x_2$) & Cruche($x_3$) & Vase($x_4$) & maximum \\
+\hline
+Moulage & 2 & 4 & 5 & 7 & 42 \\
+\hline
+Cuisson & 1 & 1 & 2 & 2 & 17 \\
+\hline
+Peinture & 1 & 2 & 3 & 3 & 24 \\
+\hline
+Bénéfice & 7 & 9 & 18 & 17 &  \\
+\hline
+\end{tabular}
+
+On veut donc, dans ce problème, maximiser $7x_1 + 9x_2 + 18x_3 + 17 x_4$ avec:
+\begin{itemize}
+    \item $2x_1 + 4x_2 + 5x_3 + 7x_4 \leq 42$
+    \item $1x_1 + 1x_2 + 2x_3 + 2x_4 \leq 17$
+    \item $1x_1 + 2x_2 + 3x_3 + 4x_3 \leq 24$
+    \item $x_1,x_2, x_3, x_4 \geq 0$
+\end{itemize}
+
+Dictionnaire D1:
+\begin{itemize}
+    \item $x_5 = 42 - 2x_1 - 4x_2 - 5x_3 - 7x_4$
+    \item $x_6 = 17 - 1x_1 - 1x_2 - 3x_3 - 2x_4$
+    \item $x_7 = 24 - 1x_1 - 2x_2 - 3x_3 - 3x_4$
+    \item $trait de division$
+    \item $z = 7x_1 + 9x_2 + 18x_3 + 17 x_4$
+\end{itemize}
+
+Les variables de base sont les x de 5 à 7, et les
+variables hors base sont les x de 1 à 4.
+
+La solution de base admissible consiste à affecter à
+toutes les variables hors base la valeur 0, ce qui crée:
+\begin{itemize}
+    \item $x_5 = 42$
+    \item $x_6 = 17$
+    \item $x_7 = 24$
+    \item $z = 0$
+\end{itemize}
+
+La méthode suplex va consister à faire entrer une
+variable hors base dans la base, et à faire sortir une
+variable de base de la base.
+
+On va donc faire entrer la varible $x_3$, car c'est la
+variable qui donne le plus de bénéfices
+(technique glouton). La variable qui va sortir sera
+celle qui mets le plus de contraintes, donc qui limite
+le plus la variable entrante. Il s'agit de $x_7$ dans
+ce cas.
+
+L'étape de pivot fait donc entrer $x_3$ et sortir $x_7$.
+Donc, on a:
+$$3x_3 = 24 - 1x_1 - 2x_2 - 3x_4 - x7$$
+Ce qui donne:
+$$x_3 = 8 - \frac{1}{3}x_1 - \frac{2}{3}x_2 - x_4 - \frac{1}{3}x_7$$
+
+Le dictionnaire D2 est crée en remplaçant $x_3$ par l'expression en haut sur toutes les lignes de D1. En le
+simplifiant, ça donne:
+\begin{itemize}
+    \item $x_3 = 8 - \frac{1}{3}x_1 - \frac{2}{3}x_2 - x4 - \frac{1}{3}x_7$
+    \item $x_5 = 2 - \frac{1}{3}x_1 - \frac{2}{3}x_2 - 2x_4 - \frac{5}{3}x_7$
+    \item $x_6 = 1 - \frac{1}{3}x_1 - \frac{1}{3}x_2 - \frac{2}{3}x_7$
+    \item $trait de division$
+    \item $z = 144 + x_1 - 3x_2 - x_4 - 6x_7$
+\end{itemize}
+
+La solution de base admissible dans ce cas est 144 euros
+gagnés.
+
+La variable entrante de D2 est $x_1$, car c'est la seule
+encore positif dans l'équation avec z. La variable
+sortante est $x_6$. Ce qui donne:
+$$\frac{1}{3}x_1 = 1 + \frac{1}{3}x_2 - x_6 + \frac{2}{3}x_7$$
+Ce qui donne, après simplification:
+$$x_1 = 3 + x_2 - 3x_6 + 2x_7$$
+On obtient D3 en remplaçant $x_1$ par cette équation
+dans tout D2. Après simplification, ça donne:
+\begin{itemize}
+    \item $x_1 = 3 + x_2 - 3x_6 + 2x_7$
+    \item $x_3 = 7 - x_2 - x_4 + x_6 - x_7$
+    \item $x_5 = 1 - x_2 - 2x_4 + x_6 + x_7$
+    \item $trait de division$
+    \item $z = 147 -2x_2 - x_4 - 3x_6 - 4x_7$
+\end{itemize}
+
+Étant donné qu'il n'y a plus de variable positive dans
+l'équatikn avec z, la solution de base admissible de D3
+est la solution optimale. Donc, optimalement, on fera
+3 cendriers, 0 bols, 7 cruches et 0 vases, et on fera
+un bénéfice de 147 euros.
+
+\subsubsection{Cas spéciaux}
+Cas spécial 1:maximum non borné\\
+Si le maximum n'est pas borné, alors maximiser retourne $+\infty$.\\
+Si il n'y a pas de contrainte sur $x_2$, alors le
+maximum va vers l'infini.
+
+Cas spécial 2: Dégénérescence et cyclage\\
+La dégénérescence, c'est quand la borne supérieure de la
+variable entrante est 0. Dans ce cas, on fait entrer
+dans la base cette variable, même si on ne gagne rien.
+
+Le cyclage, c'est quand des étapes dégénèrent et nous
+ramènent toujours aux mêmes dictionnaires. Il faudra
+appliquer la règle de Blund pour s'en sortir.
+
+La règle de Blund consiste à toujours choisir les
+variables entrentantes et sortantes de plus petit indice
+, si jamais il y a plus d'une variable possible.
+
+\textbf{Théorème} La méthode suplex avec la règle de
+Blund n'a pas de cyclage.
