@@ -1,0 +1,54 @@
+\section{TD1}
+
+\subsection{Exercice 1}
+\subsubsection{Question 1}
+Des connections qui permettent le dialogue bidirectionnel à l'alternat sont connues comme des connections \textbf{Half duplex}.
+\subsubsection{Question 2}
+Une transmission en bande de base correspond à une transmission en \textbf{numérique}.
+\subsubsection{Question 3}
+L'interconnexion de machine par l'intermédiare d'un Hub correspond à une topologie en \textbf{bus}.
+\subsubsection{Question 4}
+Si un message de 60 octets part de la couche réseau de la machine A, alors la couche réseau de la machine B reçevra un message de \textbf{60 octets}.
+
+\subsection{Exercice 2}
+\subsubsection{Question 1}
+L'utilisation d'un protocole en couches permet de:
+\begin{itemize}
+	\item changer une couche sans impacter les autres (maintenance)
+	\item assurer l'interopérabilité entre les machines
+\end{itemize}
+et à comme principal défault que le message envoyé puisse devenir très lourd du aux en-tête placées par les couches intermédiares, ou au padding.
+\subsubsection{Question 2}
+Deux standards permettant l'interopérabilité:
+\begin{itemize}
+	\item chargeur de smartphone à induction
+	\item rails de train
+\end{itemize}
+Deux standards ne permettant pas l'interopérabilité:
+\begin{itemize}
+	\item chargeurs de smartphone filiaire
+	\item connectique vidéo
+\end{itemize}
+\subsubsection{Question 3}
+La fibre optique à un débit élevé, et une latence élevée, surtout sur des grandes distances.
+La wifi, par contre, a un débit faible et une latence faible.
+\subsubsection{Question 4}
+Non, ils ne sont pas identiques. Le flux d'octets envoie des messages plus légers, mais sans doute désordonnées,
+alors que le message est une entité unique et indivisible à travers tout le réseau, et est donc plus lourd.
+\subsubsection{Question 5}
+Il y aura peu d'impacte, voir aucun, car le modèle en couche permet de changer une couche sans toucher les autres.
+\subsubsection{Question 6}
+\begin{tabular}{|c|c|c|c|}
+\hline
+ & étoile & anneau & maillage complet \\
+\hline
+court & 2 & 1 & 1 \\
+\hline
+moyen & 2 & $\frac{n}{4}$ & 1 \\
+\hline
+long & 2 & $\frac{n}{2}$ & 1 \\
+\hline
+\end{tabular}
+
+Le mailage complet est plus rapide, mais est plus cher à implémenter.
+Dans le cadre de cet exercice, l'anneau bidirectionnel priorisait le chemin le plus court.

@@ -1,1 +1,19 @@
 \section{Cours 2}
+\subsection{Couche liaisonn de données}
+La couche liaison de données gère la liaison directe entre deux machines.
+Dans une connection liaison de données, il n'y a pas de noeuds intermédiare entre la source et la destination.
+
+\subsection{Couche réseau}
+Elle s'occupe de l'adressage des machines, afin qu'elles puissent être identifiées à l'intérieur du réseau.
+
+Le routage consiste à déterminer la sortie de chaque pacquet reçu par le noeud.
+Le routage n'est fait que si la destination n'a pas de lien direct avec le noeud actuel.
+Le routage est dit:
+\begin{itemize}
+	\item centralisé, si il est géré par un seul noeud pour tout le réseau,
+	\item décentralisé, si chaque noeud gère le routage de ses propres paquets.
+\end{itemize}
+
+Afin de régler les problèmes de congestion, on donne un TTL(Time To Live) aux paquets qui entre le réseau.
+Le TTL correspond au nombre de tronçons(liaisons) que le paquet peux emprunter avant d'atteindre sa destination.
+Si le compte atteint 0 avant que la paquet n'atteigne sa destination, le paquet est détruit.
