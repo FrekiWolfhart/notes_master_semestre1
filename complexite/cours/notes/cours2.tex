@@ -1,0 +1,21 @@
+\section{Cours 2}
+\subsection{Mise en relation complexité et efficacité pratique}
+L'objectif de cette UE est d'étudier les problèmes conjecturés de complexité exponentielle.
+
+On travaille sur des graphes orientés finis, avec un nombre d'arcs finis.
+
+$\Gamma^+$(x) est l'ensemble des successeurs de x.\\
+$\Gamma^-$(x) est l'ensemble des prédécesseurs de x.\\
+$\Gamma$(x) est l'ensemble des voisins de x.
+
+Le graphe réciproque d'un graphe orienté est le même graphe avec la direction des arcs inversés.
+Un graphe symétrisé est l'union d'un graphe orienté et de son réciproque.
+
+\subsection{Représentation machione}
+\subsubsection{Par matrice d'adjacence}
+Le cas standrad est une matrice de booléen, qui est symétrique si le graphe est non-orienté.
+On mets un 1 dans la case si il y a un arc entre ligne et colonne, et un 0 sinon.
+
+Un graphe valué sera représenté par une matrice de réels, avec la valeur d'un arc dans la case correspondante, ou -1 si il n'y a pas d'arc.
+\subsubsection{Par liste d'adjacence}
+L'ordre dans la liste n'a pas d'importance. Il y a autant d'éléments dnas la liste qu'il y a d'arcs dans le graphe.
