@@ -1,0 +1,26 @@
+\section{cours 3}
+\subsection{Le modèle TCP/IP}
+Le modèle OSi étant un modèle théorique, le modèle TCP/IP ne suit pas son architecture à la lettre/
+Les principales différences sont:
+\begin{itemize}
+	\item Les couches physique et liaisons de données fusionnées dans TCP/IP.
+	\item Les trois couches applicatives fusionnées dans TCP/IP.
+\end{itemize}
+\subsubsection{La couche de liens d'internet}
+Elle se charge de transmettre des datagrammes IP, et de gérer les requêtes ARP.
+
+La carte réseau appartient à la couche physique, et est nommée par l'adresse MAC(Medium Access Control).
+Elle est suposée unique par machine. Elle tient sur 6 octets, c'est à dire 48 bits, et sont écrites sous format
+hexadécimal.
+
+La couche IP ne peux pas renseigner l'adresse MAC d'un pc. Elle ne peux que renseigner son adresse IP.
+La requête ARP sert à demander à une machine sur le réseau son adresse MAC, afin de pouvoir lui envoyer un message.
+Il existe aussi le protocole RARP, qui permet de déterminer l'adresse IP d'une machine, en ayant seulement son
+adresse MAC.
+
+Le cache ARP sert à stocker la requête ARP, afin d ene pas avoir à refaire la requête à chaque fois.
+Le cache à une durée de vie limitée, car les adresses IP et MAC peuvent changer.
+Sous linux, la commande arp permet, entre autre, de consulter le cache ARP de la machine.
+
+\subsubsection{Fragmentation}
+La fragmentation permet de transmettre des datagrammes trop gros pour le réseau.
