@@ -1,0 +1,36 @@
+\section{TD 2}
+\subsection{Exercice 3}
+Le code C est le code regroupant les 4 mots utilisés dans cet exercice.
+\subsubsection{Question 1}
+La distance de Hamming entre deux mots est le nombre de bits différents entre les mots.\\
+La distance de Hamming d'un code correspond à la distance de hamming minimum entre les mots de ce code, sans prendre
+en compte la distnce entre un mot et lui même. Dans cet exercice, c'est 5.
+\subsubsection{Question 2}
+Un code de Hamming de distance d peux détecter d-1 erreurs.
+De plus, un code de Hamming de distance $d=2k+1$ peux corriger k erreurs.
+Par conséquent, concernant le code C, il peux détecter 4 erreurs(d-1), et en corriger 2(2k+1).
+\subsubsection{Question 3}
+Le mot résultat est 1110000000. On cherche le mot initial, et, pour cela le mot le plus proche dans le code.
+On va donc corriger le mot en le remplaçant par le mot le plus proche dans C, qui est  1111100000.
+
+\subsection{Exercice 4}
+Dans cet exercice, on utilise un code polynomial généré par le polynôme $G(x)=x^4+x+1$, et le mot m = 110110.\\
+
+Un code à redondance cyclique, noté CRC, a pour principe d'ajouter plusieurs bits de contrôle, dont les valeurs sont
+des combinaisons du mot initial m.
+Pour faire cela, on utilise un polynôme générateur, souvent noté par G.
+Le degré de G correspond au nombre de bits de contrôle ajoutés. Donc, dans cet exercice, 4 bits de contrôle seront
+rajoutés.
+Afin d'obtenir les bits de contrôle, on prends le message m, celui qui doit reçevoir les bits de contrôle, puis on
+essaye de l'écrire sous forme de ploynôme.
+Dans cet exercice, cela donne $m(x)=x^5+x^4+x^2+x$. Ensuite, on multiplie le degré de G à ce polynôme.
+Cela donne: $m(x)=x^4(x^5+x^4+x^2+x)=x^9+x^8+x^6+x^5$.
+Ensuite, on fait une division euclidienne entre ce polynôme et G(x).
+Pour faire cela, on élimine le plus grand facteur de m(x) à chaque nouvelle division. On continue jusqu'à ce que
+le plus grand facteur de m(x) soit inférieur à celui de G(x).
+Dans cet exercice, ça donne: $\frac{m(x)}{G(x)}=x^5+x^4+x+1$, et à comme reste $r(x)=x^2+1$.
+Le reste r(x) servira à calculer les bits de contrôle. Étant donné qu'il faut 4 bits de contrôle, on convertit cette
+équation en binaire.
+Cela donne: $r(x)=x^2+1=0x^3+1x^2+0x^1+1x^0$. Par conséquent, les bits de contrôle de m seront 0101.
+Donc, le mot écrit avec les bits de contrôle sera m=1101100101.
+Les bits de contrôle sont aussi appelés bits de redondance car ils son rajoutés à l'information initiale.
