@@ -1,0 +1,33 @@
+\section{Cours 2}
+\subsection{L'indépendance}
+La notion d'indépendance a été théorisée en 1966.
+Lorsqu'on a deux parties du programmes, on sépare chaque partie en deux parties:
+\begin{itemize}
+	\item les variables lues par la partie
+	\item les variables écrites par la partie
+\end{itemize}
+Pour que les parties soient indépendantes, il faut que:
+\begin{itemize}
+	\item la partie 1 ne lise aucune variable écrite par la partie 2
+	\item la partie 2 ne lise aucune variable écrite par la partie 1
+\end{itemize}
+Donc, que les deux parties ne touchent pas des variables similaires.
+
+\subsection{La notion d'atomicité}
+Dans ce cours, une instruction est dite atomique si et seulement si les variables lues ou modifiées par cette
+instruction ne peuvent pas être lues ou modifiées par le reste du programme durant son exécution.
+Avoir des instruction atomiques n'oblige pas le reste des threads à ne rien faire dans le programme.
+
+Il y a deux types d'atomicité:
+\begin{itemize}
+	\item les instructions atomiques de base du langage
+	\item la création d'instruction atomiques avec un verrou rajouté par le codeur
+\end{itemize}
+En java, les écritures de références sont toujours atomiques.
+
+Dans le cas ou on mets plusieurs verrous, afin d'éviter les inter-blocages, il faut décider un ordre des verrous
+dans le programme, et ne jamais le changer.
+
+\subsection{Les variables atomiques}
+Si la variable est déclaré comme atomique, AtomicInteger au lieu d'Integer, par exemple, cela permet à la variable
+d'avoir les avantages de l'atomicité, sans devoir créer de verrour dans le code.
