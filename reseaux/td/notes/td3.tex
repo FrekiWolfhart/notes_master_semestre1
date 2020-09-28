@@ -1,0 +1,48 @@
+\section{TD 3}
+Les adresses IP contiennent des 0 inutiles afin de bien tout aligner en colonne.
+\subsection{Exercice 1}
+\begin{itemize}
+	\item 141.115.004.005: adresse de classe B, id réseau: 141.115.0.0, id machine : 0.0.4.5
+	\item 006.324.012.013: adresse impossible car les chiffres vont de 0 à 255
+	\item 001.001.001.002: adresse de classe A, id réseau:1.0.0.0, id machine:0.1.1.2
+	\item 141.115.000.000: adresse réseau de classe B, interdite à une machine
+	\item 126.024.015.002: adresse de classe A, id réseau: 126.0.0.0, id machine:0.24.15.2
+	\item 210.255.255.000: adresse de réseau de classe C, interdite à une machine
+\end{itemize}
+
+Adresses interdites pour les machine:
+\begin{itemize}
+	\item adresses réseau (tout les bits à 0 sauf ceux d'id réseau)
+	\item tout les bits à 0, ou tout les bits à 1
+	\item tout les octets hors de l'id réseau à 1
+	\item adresse de rebouclage (127.x.y.z)
+\end{itemize}
+
+\subsection{Exercice 2}
+\subsubsection{Question 1}
+La partie identifiant le réseau est 155.102.0.0 car l'adresse est de classe B.
+\subsubsection{Question 2}
+\begin{itemize}
+	\item 155.102.015.000 n'appartient pas au réseau
+	\item 155.102.015.064 est l'adresse du réseau
+	\item 155.102.015.065 appartient au réseau
+	\item 155.102.015.200 n'appartient pas au réseau
+\end{itemize}
+
+\subsection{Exercice 3}
+\subsubsection{Question 1}
+Le réseau définie par l'adresse 214.123.155.0/24 est un réseau de classe C.
+\subsubsection{Question 2}
+Afin d'avoir une dizaine de sous réseau, il faut réserver les 4 bits les plus à gauche de
+l'id machine. Il serviront à identifier le sous-réseau auquel appartient la machine.
+Le nouveau masque sera donc (24+4=28): 214.123.155.0/28.
+\subsubsection{Question 3}
+Chaque sous-réseau pourra recevoir 16 adresses IP, dont 14 pour les machines.
+\subsubsection{Question 4}
+Pour le troisième sous-réseau utilisable, on a:
+\begin{itemize}
+	\item adresse réseau: 214.123.155.48.
+	\item adresse de broadcast: 214.123.155.63.
+\end{itemize}
+
+
