@@ -1,0 +1,20 @@
+\section{Cours 4}
+Il y a des adresses IP interdites pour les machines. La page 91 du poly de cours contient la liste d'adresses qu'on
+ne peux pas assigner à une machine, ainsi que les raisons.
+
+La machine peux envoyer un message vers son local host 127.0.0.1, ce qui peux servir à communiquer entre plusieurs
+processus et plusieurs programmes qui tournent sur la machine.
+
+Dans un réseau, une adresse IP privée sert à reconnaître la machine à l'interieur du réseau.
+
+\subsection{Le système CIDR}
+Le système CIDR(Classless Inter Domain Routing) est apparu en 1993, et a des adresses de la forme A.B.C.D/M, avec
+M étant le masque de réseau.
+Ce système a été crée afin de régler le problème de pénuries d'adresses de classe B.
+
+Un switch, comparé à un hub, va retenir les adresses MAC des machines, et ne va plus diffuser le message sur tout le
+réseau. Et les tables peuvent être mise à jour si les adresses changent. Cela diminue la surcharge du réseau, car le
+message est ciblé sur une machine. Cela réduit aussi les risques de collisions.
+
+\subsection{Réseau ad-hoc}
+On peux créer un réseau ad-hoc entre machines, qui sert à relier des machines sans infrastructure.
