@@ -1,0 +1,59 @@
+\section{Cours 5}
+\subsection{IPv6}
+L'IPv6 contient tellement d'adresses, qu'elle rend inutile le NAT.
+Les adresses IPv6 ont trois catégories:
+\begin{enumerate}
+	\item Les adresses unicast, désignant une seule interface.
+	\item Les adresses anycast, désignant un ensemble d'interfaces. Ce type n'existe pas en IPv4.
+	\item Les adresses multicast, désignant un ensemble d'interfaces.
+\end{enumerate}
+\textbf{Remarque:} Il n'y a pas d'adresse de broadcast, celle ci étant remplacé par l'adresse multicast.
+Une interface peux avoir plusieurs adresses IPv6, voir les trois en même temps, si on veut.
+
+Lorsque l'adresse IPv6 est écrite en héxadécimale, on peut omettre les 0 non significatifs,
+i.e ceux avant le premier caractère significatif.//
+Par exemple, on peux écrire 0025 25 dans une adresse sans que cela ne pose problème.
+Dans une adresse IPv6, on peux remplacer une longue suite de 0 par ::, mais ce symbole ne doit apparaître
+qu'une seule fois pour éviter l'ambiguité. Par exemple, 0:0:0:0:0:0:0:1 devient ::1.
+
+On peux représenter une adresse IPv4 en IPv6 en ajoutant ::ffff: devant.
+Par exepmle, 127.0.0.1 en IPv4 devient ::ffff:127.0.0.1 en IPv6.
+
+Pour éviter une ambiguité avec les ::, l'adresse IPv6 est mise entre [] dans une url.
+Par exemple, http://[100:37:29:145::15]:80 indique qu'on se connecte à l'adresse IPv6 100:37:29:145::15, et au port 80.
+
+\subsubsection{Adresses unicast}
+Les adresses unicast ont différent types:
+\begin{itemize}
+	\item globales (portée globale: internet)
+	\item de lien local (portée au niveau du lien: switch ou hub, préfixe: fe80::/64)
+	\item de site local, mais c'est un type déprécié
+	\item locales uniques (portée au site, préfixe: fc00::/7, dédiées à des communications locales)
+\end{itemize}
+
+\subsubsection{Adresses multicast}
+Les adresse multicast ont un champ porté, qui définit leur portée ainsi:
+\begin{itemize}
+	\item 1: interface locale
+	\item 2: lien local
+	\item 5: site local
+	\item 8: organisation locale
+	\item E: global
+\end{itemize}
+
+\subsubsection{Adresses anycast}
+Les adresses anycast sont prises du domaine des adresses unicast, et sont utilisées par les routeurs.
+
+\subsubsection{Les états et durée de vie}
+Chaque adresse IPv6 a une durée de vie qui détermine sa validité. Elle peut être infinie.
+Une fois la durée de vie finie, l'adresse devient expirée, et est maintenant assignable à une autre interface.
+Avant d'être expirée, elle passe dans un état déprécié, ce qui lui permet d'indiquer qu'il faut lui assigner
+une nouvelle adresse avant la date fatidique.
+
+Afin de garantir l'unicité d'une adresse IPv6, on utilise la procédure DAD(Duplicate Address Detection).
+
+\subsubsection{Datagramme}
+En IPv6, le pacquet n'est pas fragmenté par les routeurs intermédiares. Si sa taille est supérieure à la capacité du
+réseau, le routeur le supprime et envoie une alerte "Package Too Big" à la source.
+
+Les entêtes créés par les couches intermédiares peuvent être ignorées par les routeurs intermédiares.
