@@ -6,3 +6,6 @@
 *.fls
 *.aux
 *.out
+*.synctex.gz
+*.bbl
+*.blg
